@@ -1,0 +1,16 @@
+<nav aria-label="Main navigation">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link <%= (typeof active !== 'undefined' && active === 'home') || (typeof currentPath !== 'undefined' && currentPath === '/') ? 'active' : '' %>" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link <%= (typeof active !== 'undefined' && active === 'add') || (typeof currentPath !== 'undefined' && (currentPath === '/products/new' || currentPath === '/products/add')) ? 'active' : '' %>" href="/products/new">Add product</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link <%= (typeof active !== 'undefined' && active === 'list') || (typeof currentPath !== 'undefined' && currentPath === '/products') ? 'active' : '' %>" href="/products">View all products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link <%= (typeof active !== 'undefined' && active === 'contact') || (typeof currentPath !== 'undefined' && currentPath === '/contact') ? 'active' : '' %>" href="/contact">Contact information</a>
+    </li>
+  </ul>
+</nav>

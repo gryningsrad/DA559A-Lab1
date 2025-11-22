@@ -1,0 +1,58 @@
+/* General Styles */
+body {
+  background-color: white;
+  color: black;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+/* List of Products */
+.product-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.product-list li {
+  background-color: lightgray;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Single Product Page */
+.product-details {
+  background-color: lightgray;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Form Styles */
+form {
+  background-color: lightgray;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Button Styles */
+button {
+  background-color: skyblue;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: deepskyblue;
+}
