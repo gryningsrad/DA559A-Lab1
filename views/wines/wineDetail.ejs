@@ -1,0 +1,11 @@
+<%- include('../partials/header.ejs', { title:'Lab1'}) %>
+<%- include('../partials/navigation.ejs') %>
+
+
+<h2><%= wine.name %></h2>
+<ul>
+    <li>Year: <%= wine.year %></li>
+    <li>Quantity: <%= wine.Quantity %></li>
+    <li>Price: <%= wine.price %></li>
+</ul>
+<%- include('../partials/footer.ejs') %>

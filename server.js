@@ -1,25 +1,23 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
+const path = require('path');
 const db = require('./database').conn;
+const wineRoutes = require('./routes/wineRoutes')
 
 app.use(express.static('static'));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+app.use('/', wineRoutes)
+
 app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'));
 
-app.get('/', async(req, res) => {
-  
-  try {
-    console.log("Trying to query the database");
-    // For pool initialization, see above
-    
-    const [rows] = await db.query('SELECT * FROM wines AS result');
-    console.log('DB OK:', rows);
+app.route('/wines', wineRoutes.route);
 
-  } catch (err) {
-    console.log(err);
-  }
-
-  res.send('Hello World from Lab1! OR=!');
+app.get('/', (req, res) => {
+  console.log("Redirecting to /wines");
+  res.redirect('/wines');
 });
 
 app.listen(port, () => {

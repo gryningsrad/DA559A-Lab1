@@ -6,7 +6,103 @@ body {
   margin: 0;
   padding: 20px;
 }
+/* Headings and Paragraphs */
+h1, h2 {
+  color: #111;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  margin: 0 0 10px;
+  line-height: 1.2;
+  font-weight: 700;
+}
 
+h1 {
+  font-size: 2rem; /* ~32px */
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: 1.25rem; /* ~20px */
+  font-weight: 600;
+  color: #222;
+}
+
+p {
+  color: #333;
+  font-size: 1rem; /* 16px */
+  line-height: 1.6;
+  margin: 0 0 15px;
+  max-width: 70ch; /* improves readability on wide screens */
+}
+
+.table-allwine {
+  padding: 2px;
+  margin: 5px;
+  border-color: gray;
+  border-width: 2px;
+  border-style: solid;
+}
+.table-header {
+  font-weight: bold;
+  border-bottom-color: darkgray;
+  border-bottom-style: double;
+}
+
+td {
+  padding: 10px;
+}
+
+/* Nav bar */
+.nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; /* keep items on a single row */
+  align-items: center;
+  gap: 1rem;
+  padding: 0;
+  margin: 20px 0;
+  list-style: none;
+  background: transparent;
+  overflow-x: auto; /* allow scrolling on very small screens instead of wrapping */
+}
+
+/* Individual nav item */
+.nav-item {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Diamond icon before each nav item */
+.nav-item::before {
+  content: "\2666"; /* ♦ diamond symbol */
+  display: inline-block;
+  margin-right: 0.5rem;
+  color: #007acc;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+/* Link inside nav */
+.nav-link {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: 8px 10px;
+  border-radius: 4px;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  background-color: rgba(0,0,0,0.05);
+  outline: none;
+}
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.125rem; }
+  p  { font-size: 0.95rem; }
+}
 /* List of Products */
 .product-list {
   list-style-type: none;

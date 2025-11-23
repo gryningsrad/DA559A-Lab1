@@ -1,0 +1,22 @@
+<%- include('../partials/header.ejs', { title:'Lab1'}) %>
+<%- include('../partials/navigation.ejs') %>
+
+
+<h2>Add wine</h2>
+<table class="table-allwine">
+    <tr>
+      <td colspan="6">
+        <form method="POST" action="/addnew" class="form-add-wine">
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="number" name="vintage" placeholder="Vintage" min="0" step="1" required>
+            <input type="number" name="quantity" placeholder="In stock" min="0" step="1" required>
+            <input type="number" name="price" placeholder="Price" min="0" step="0.01" required>
+            <button type="submit">Add wine</button>
+          </div>
+        </form>
+      </td>
+    </tr>
+</table>
+
+<%- include('../partials/footer.ejs') %>

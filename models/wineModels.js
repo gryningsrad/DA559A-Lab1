@@ -1,12 +1,13 @@
-const db = require('../database').conn;
+const conn = require('../database').conn;
 
 async function getAllWines() {
+  console.log("Fetching all wines from database");
   const sql = 'SELECT * FROM wines';
   const [rows] = await conn.query(sql);
   return rows;
 }
 
-async function getByWineId(wineId) {
+async function getWineById(wineId) {
   const sql = 'SELECT * FROM wines WHERE id = ?';
   const [rows] = await conn.query(sql, [wineId]);
   return rows[0];
@@ -14,8 +15,9 @@ async function getByWineId(wineId) {
 
 async function createWine(wineData) {
   const sql = 'INSERT INTO wines (name, vintage, quantity, price) VALUES (?, ?, ?, ?)';
+  console.log("Inserting: " + wineData)
   const { name, vintage, quantity, price } = wineData;
-  const [result] = await conn.query(sql, [nname, vintage, quantity, price]);
+  const [result] = await conn.query(sql, [name, vintage, quantity, price]);
   return result.insertId;
 }
 
@@ -34,7 +36,7 @@ async function deleteWine(wineId) {
 
 module.exports = {
   getAllWines,
-  getByWineId,
+  getWineById,
   createWine,
   updateWine,
   deleteWine
