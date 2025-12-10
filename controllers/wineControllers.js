@@ -1,9 +1,9 @@
 // controllers/WineController.js
-const { test } = require('../database');
-const Wine = require('../models/wineModels');
+import { test } from '../database.js';
+import * as Wine from '../models/wineModels.js';
 
 //async function listWines(req, res, next) {
-async function listWines(req, res, next) {  
+export async function listWines(req, res, next) {  
   //console.log("Listing wines - wineControllers");
   try {
     const Wines = await Wine.getAllWines();
@@ -14,7 +14,20 @@ async function listWines(req, res, next) {
   }
 }
 
-async function showWineDetails(req, res, next) {
+export async function listWinesJSON(req, res, next) {  
+  //console.log("Listing wines - wineControllers");
+  try {
+    const Wines = await Wine.getAllWines();
+    console.log(JSON.stringify(Wines))
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(Wines));
+    //res.render('wines/main', { Wines });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function showWineDetails(req, res, next) {
   try {
     const wine = await Wine.getWineById(req.params.id);
     //console.log("wineDetails with ID: " + req.params.id)
@@ -25,16 +38,29 @@ async function showWineDetails(req, res, next) {
   }
 }
 
-function testfunc(req, res, next) {
+export async function showWineDetailsJSON(req, res, next) {
+  try {
+    const wine = await Wine.getWineById(req.params.id);
+    //console.log("wineDetails with ID: " + req.params.id)
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(wine));
+    if (!wine) return res.status(404).send('Wine not found');
+    
+  } catch (err) {
+    next(err);
+  }
+}
+
+export function testfunc(req, res, next) {
   console.log("Testing birds controller");
   res.send('Birds home page testing')
 }
 
-async function showNewForm(req, res) {
+export async function showNewForm(req, res) {
   res.render('wines/new');
 }
 
-async function createWine(req, res, next) {
+export async function createWine(req, res, next) {
   try {
     console.log("CreateWine body: " + req.body)
     await Wine.createWine(req.body);
@@ -44,7 +70,7 @@ async function createWine(req, res, next) {
   }
 }
 
-async function showEditForm(req, res, next) {
+export async function showEditForm(req, res, next) {
   try {
     const Wine = await Wine.getWineById(req.params.id);
     if (!Wine) return res.status(404).send('Wine not found');
@@ -54,7 +80,7 @@ async function showEditForm(req, res, next) {
   }
 }
 
-async function updateWine(req, res, next) {
+export async function updateWine(req, res, next) {
   try {
     await Wine.updateWine(req.params.id, req.body);
     res.redirect('/wines');
@@ -63,7 +89,7 @@ async function updateWine(req, res, next) {
   }
 }
 
-async function deleteWine(req, res, next) {
+export async function deleteWine(req, res, next) {
   try {
     await Wine.deleteWine(req.params.id);
     res.redirect('/wines');
@@ -72,7 +98,7 @@ async function deleteWine(req, res, next) {
   }
 }
 
-module.exports = {
+/* module.exports = {
   listWines,
   showWineDetails,
   testfunc,
@@ -81,4 +107,4 @@ module.exports = {
   showEditForm,
   updateWine,
   deleteWine
-};
+}; */

@@ -1,19 +1,19 @@
-const conn = require('../database').conn;
+import { conn } from '../database.js';
 
-async function getAllWines() {
+export async function getAllWines() {
   console.log("Fetching all wines from database");
   const sql = 'SELECT * FROM wines';
   const [rows] = await conn.query(sql);
   return rows;
 }
 
-async function getWineById(wineId) {
+export async function getWineById(wineId) {
   const sql = 'SELECT * FROM wines WHERE id = ?';
   const [rows] = await conn.query(sql, [wineId]);
   return rows[0];
 }
 
-async function createWine(wineData) {
+export async function createWine(wineData) {
   const sql = 'INSERT INTO wines (name, vintage, quantity, price) VALUES (?, ?, ?, ?)';
   console.log("Inserting: " + wineData)
   const { name, vintage, quantity, price } = wineData;
@@ -21,23 +21,23 @@ async function createWine(wineData) {
   return result.insertId;
 }
 
-async function updateWine(wineId, wineData) {
+export async function updateWine(wineId, wineData) {
   const sql = 'UPDATE wines SET name = ?, vintage = ?, quantity = ?, price = ? WHERE id = ?';
   const { name, vintage, quantity, price } = wineData;
   const [result] = await conn.query(sql, [name, vintage, quantity, price, wineId]);
   return result.affectedRows;
 }
 
-async function deleteWine(wineId) {
+export async function deleteWine(wineId) {
   const sql = 'DELETE FROM wines WHERE id = ?';
   const [result] = await conn.query(sql, [wineId]);
   return result.affectedRows;
 }
 
-module.exports = {
+/*module.exports = {
   getAllWines,
   getWineById,
   createWine,
   updateWine,
   deleteWine
-};
+}; */

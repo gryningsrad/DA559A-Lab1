@@ -1,5 +1,5 @@
-const mysql = require('mysql2/promise');
-require('dotenv').config();
+import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
 
 /**
  * const conn = mysql.createConnection({
@@ -10,13 +10,13 @@ require('dotenv').config();
 }); 
 **/
 
-//dotenv.config();
+dotenv.config();
 
-function test() {
+export function test() {
   console.log("Database connection test");
 };
 
-const conn = mysql.createPool({
+export const conn = mysql.createPool({
   host:     process.env.DB_HOST,
   port:     process.env.DB_PORT,
   user:     process.env.DB_USER,
@@ -27,5 +27,5 @@ const conn = mysql.createPool({
   queueLimit: 0
 });
 
-module.exports = { test, conn };
+//module.exports = { test, conn };
 //module.conn = conn;
