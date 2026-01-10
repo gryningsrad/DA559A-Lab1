@@ -38,6 +38,17 @@ export async function showWineDetails(req, res, next) {
   }
 }
 
+export async function showWineInventory(req, res, next) {
+  try {
+    const wine = await Wine.getWineById(req.params.id);
+    //console.log("wineDetails with ID: " + req.params.id)
+    if (!wine) return res.status(404).send('Wine not found');
+    res.render('wines/wineInventory', { wine });
+  } catch (err) {
+    next(err);
+  }
+}
+
 export async function showWineDetailsJSON(req, res, next) {
   try {
     const wine = await Wine.getWineById(req.params.id);
@@ -46,6 +57,52 @@ export async function showWineDetailsJSON(req, res, next) {
     res.end(JSON.stringify(wine));
     if (!wine) return res.status(404).send('Wine not found');
     
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function listWineProducerJSON(req, res, next) {
+  try {
+    const wine = await Wine.getWineById(req.params.id);
+    if (!wine) return res.status(404).send('Wine not found');
+    //console.log("wineDetails with ID: " + req.params.id)
+
+    const producer = await Wine.getWineProducer(wine.producer_id);
+    if (!producer) return res.status(404).send('Producer not found');
+
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(producer));
+    
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function getWineInventoryJSON(req, res, next) {
+  try {
+    const wine = await Wine.getWineInventory(req.params.id); 
+    if (!wine) return res.status(404).send('Wine not found');
+
+
+    res.setHeader('Content-Type', 'application/json');
+    res.json({
+      product_id: wine.id,
+      producer_id: wine.producer_id,
+      quantity: wine.quantity,
+      updated_at: wine.updated_at
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function listWinesBySupplier(req, res, next) {  
+  //console.log("Listing wines - wineControllers");
+  try {
+    const Wines = await Wine.getWinesBySupplier(req.params.id);
+    console.log(Wines)
+    res.render('wines/main', { Wines });
   } catch (err) {
     next(err);
   }

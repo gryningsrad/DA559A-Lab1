@@ -34,6 +34,30 @@ export async function deleteWine(wineId) {
   return result.affectedRows;
 }
 
+export async function getWinesBySupplier(supplierId) {
+  const sql = 'SELECT * FROM wines WHERE producer_id = ?';
+  const [rows] = await conn.query(sql, [supplierId]);
+  return rows
+}
+
+export async function getWineProducer(wineId) {
+  const sql = `
+    SELECT p.*
+    FROM producers p
+    JOIN wines w ON p.id = w.producer_id
+    WHERE w.id = ?
+  `;
+  const [rows] = await conn.query(sql, [wineId]);
+
+  return rows[0];
+}
+
+export async function getWineInventory(wineId) {
+  const sql = 'SELECT * FROM wines WHERE id = ?';
+  const [rows] = await conn.query(sql, [wineId]);
+  
+  return rows[0];
+}
 /*module.exports = {
   getAllWines,
   getWineById,

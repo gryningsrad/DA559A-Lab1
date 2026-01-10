@@ -7,7 +7,7 @@
     <tr><td class="table-header">Name</td><td class="table-header">Vintage</td><td class="table-header">In stock</td><td class="table-header">Price</td><td class="table-header">Details</td><td class="table-header">Edit</td></tr>
     
     <% Wines.forEach(function(wine) { %>
-        <tr><td><strong><%= wine.name %></td><td> <%= wine.vintage %> </td><td> <%= wine.quantity %> </td><td> <%= wine.price %> </td><td><a href="/wine/<%= wine.id %>">Details</a><td><a href="/wine/<%= wine.id %>">Edit</a></td></td></tr>
+        <tr><td><strong><%= wine.name %></td><td> <%= wine.vintage %> </td><td> <%= wine.quantity %> </td><td> <%= wine.price %> </td><td><a href="/wines/<%= wine.id %>">Details</a><td><a href="/wine/<%= wine.id %>">Edit</a></td></td></tr>
     <% }); %>
 </table>
 <%- include('../partials/footer.ejs') %>

@@ -7,16 +7,20 @@ export const route = express.Router();
 // READ
 route.get('/', wineControllers.listWines);
 route.get('/wines', wineControllers.listWines);
-route.get('/wine/:id', wineControllers.showWineDetails);
-route.get('/json/wine/:id', wineControllers.showWineDetailsJSON);
-route.get('/json/wines', wineControllers.listWinesJSON);
+route.get('/wines/:id', wineControllers.showWineDetails);
+route.get('/wines/supplier/:id', wineControllers.listWinesBySupplier);
+route.get('/wines/inventory/:id', wineControllers.showWineInventory);
+route.get('/api/wines/:id', wineControllers.showWineDetailsJSON);
+route.get('/api/wines', wineControllers.listWinesJSON);
+route.get('/api/wines/:id/producer', wineControllers.listWineProducerJSON);
+route.get('/api/wines/:id/inventory', wineControllers.getWineInventoryJSON);
 
 route.get('/test', wineControllers.testfunc);
 
 // CREATE
 route.get('/new', wineControllers.showNewForm);
 route.post('/addnew', wineControllers.createWine);
-route.post('/json/addnew', wineControllers.createWine);
+route.post('/api/addnew', wineControllers.createWine);
 
 // UPDATE
 route.get('/:id/edit', wineControllers.showEditForm);
